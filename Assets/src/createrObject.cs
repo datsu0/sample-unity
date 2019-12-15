@@ -9,6 +9,12 @@ public class createrObject : MonoBehaviour
     {
         GameObject cube = GameObject.CreatePrimitive(PrimitiveType.Cube);
         cube.AddComponent(typeof(RotateSample));
+        GameObject plane = GameObject.CreatePrimitive(PrimitiveType.Plane);
+        plane.transform.position = new Vector3(0, 0, 0);
+        GameObject lightGameObject = new GameObject("Directional Light");
+        lightGameObject.AddComponent<Light>();
+        lightGameObject.transform.position = new Vector3(0,1,0);
+
     }
 
     // Update is called once per frame

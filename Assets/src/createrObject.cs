@@ -30,11 +30,16 @@ public class createrObject : MonoBehaviour
     {
         GameObject cube = GameObject.CreatePrimitive(PrimitiveType.Cube);
         cube.AddComponent(typeof(RotateSample));
+        cube.AddComponent<Rigidbody>();
         GameObject plane = GameObject.CreatePrimitive(PrimitiveType.Plane);
         plane.transform.position = new Vector3(0, 0, 0);
         GameObject lightGameObject = new GameObject("Directional Light");
         lightGameObject.AddComponent<Light>();
         lightGameObject.transform.position = new Vector3(0,1,0);
+
+        var rididbody = gameObject.AddComponent<Rigidbody>();
+        rididbody.useGravity=false;
+
 
         _camTransform = this.gameObject.transform;
         _initialCamRotation = this.gameObject.transform.rotation;
@@ -172,5 +177,13 @@ public class createrObject : MonoBehaviour
             GUI.Label(new Rect(Screen.width / 2 - 50, Screen.height - 30, 100, 20), "カメラ操作 無効");
         }
     }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        // 衝突した相手のオブジェクト名をログに表示する
+        Debug.Log(collision.gameObject.name);
+    }
 }
+
+
 
